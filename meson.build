@@ -348,9 +348,9 @@ userconf.set10('WITH_GPL', true)
 ok = cc.has_header_symbol('sys/personality.h', 'ADDR_NO_RANDOMIZE')
 userconf.set10('HAVE_DECL_ADDR_NO_RANDOMIZE', ok)
 
-if not cc.compiles('extern char **environ;\nint main(int argc, char **argv) { (void)environ; return 0; }')
-  error('Environ is not found')
-endif
+have_attr_weak = cc.compiles('extern char **environ __attribute__((weak));\nint main(int argc, char **argv) { (void)environ; return 0; }')
+message('Checking for __attribute__((weak)): @0@'.format(have_attr_weak))
+userconf.set10('HAVE_ATTR_WEAK', have_attr_weak)
 
 lrt = []
 if not cc.has_function('clock_gettime', prefix: '#include <time.h>') and cc.has_header_symbol('features.h', '__GLIBC__')

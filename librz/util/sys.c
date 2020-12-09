@@ -62,7 +62,7 @@ int proc_pidpath(int pid, void * buffer, ut32 buffersize);
 # include <sys/stat.h>
 # include <errno.h>
 # include <signal.h>
-extern char **environ;
+extern char **environ SYMBOL_ATTR_WEAK;
 
 #ifdef __HAIKU__
 # define Sleep sleep

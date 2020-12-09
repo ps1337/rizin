@@ -193,6 +193,12 @@ typedef enum {
 #define TARGET_OS_IPHONE 0
 #endif
 
+#if HAVE_ATTRIBUTE_WEAK
+  #define SYMBOL_ATTR_WEAK __attribute__((weak))
+#else
+  #define SYMBOL_ATTR_WEAK
+#endif
+
 #ifdef __GNUC__
   #define FUNC_ATTR_MALLOC __attribute__((malloc))
   #define FUNC_ATTR_ALLOC_SIZE(x) __attribute__((alloc_size(x)))
